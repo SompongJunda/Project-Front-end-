@@ -1,0 +1,113 @@
+<header class="p-3 bg-dark text-white mx-0 my-0 shadow-dark border-radius-lg">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+      <h2 class="me-lg-auto" style="color: rgb(249, 249, 150)">IT Equipment</h2>
+      <ul
+        class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 flex-grow-1"
+      >
+        <li *ngIf="null == userDetail">
+          <a
+            [routerLink]="['/']"
+            routerLinkActive="router-link-active"
+            class="nav-link px-2 text-white"
+            >หน้าหลัก</a
+          >
+        </li>
+        <li *ngIf="null != userDetail">
+          <a
+            [routerLink]="['/userhome']"
+            routerLinkActive="router-link-active"
+            class="nav-link px-2 text-white"
+            >หน้าหลัก</a
+          >
+        </li>
+
+        <li *ngIf="null != userDetail">
+          <a
+            [routerLink]="['/profile']"
+            routerLinkActive="router-link-active"
+            class="nav-link px-2 text-white"
+            >โปรไฟล์</a
+          >
+        </li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1">
+          <a
+            [routerLink]="['/manage-user']"
+            routerLinkActive="router-link-active"
+            class="nav-link px-2 text-white"
+            >จัดการลูกค้า</a
+          >
+        </li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1">
+          <a [routerLink]="['/manage-product']" class="nav-link px-2 text-white"
+            >จัดการสินค้า</a
+          >
+        </li>
+        <li *ngIf="null != userDetail">
+          <a
+            [routerLink]="['/getallorderuser']"
+            routerLinkActive="router-link-active"
+            class="nav-link px-2 text-white"
+            >คำสั่งซื้อ</a
+          >
+        </li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1">
+          <a
+            [routerLink]="['/getallorder']"
+            routerLinkActive="router-link-active"
+            class="nav-link px-2 text-white"
+            >คำสั่งซื้อทั่งหมด</a
+          >
+        </li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1">
+          <a
+            href="#"
+            class="nav-link px-2 text-white"
+            [routerLink]="['/report']"
+            >รายงาน</a
+          >
+        </li>
+      </ul>
+
+      <div class="text-end" *ngIf="null == userDetail">
+        <button
+          type="button"
+          class="btn btn-outline-light me-2 mb-md-1"
+          [routerLink]="['/login']"
+          routerLinkActive="router-link-active"
+        >
+          เข้าสู่ระบบ
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning mb-md-1"
+          [routerLink]="['/register']"
+          routerLinkActive="router-link-active"
+        >
+          สมัครสมาชิค
+        </button>
+      </div>
+      <button
+        *ngIf="userDetail"
+        class="btn btn-dark me-2 d-flex align-items-center mb-md-1"
+        [routerLink]="['/cart']"
+      >
+        <i style="font-size: 17px; color: white" class="bi bi-cart3"></i>
+
+        <div style="font-size: 9px" class="badge bg-success ms-1">
+          {{ totalItem }}
+        </div>
+      </button>
+      <div class="d-flex align-items-center">
+        <button
+          type="button"
+          class="btn btn-outline-danger me-2 d-flex align-items-center mb-md-1"
+          *ngIf="null != userDetail"
+          (click)="logout()"
+        >
+          ออกจากระบบ
+        </button>
+      </div>
+    </div>
+  </div>
+</header>

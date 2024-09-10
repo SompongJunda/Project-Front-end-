@@ -1,0 +1,249 @@
+<!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="col-lg-7 text-center text-lg-start">
+      <h1 class="display-4 fw-bold lh-1 mb-3">Register</h1>
+      <p class="col-lg-10 fs-4">ต้องสมัครสมาชิกก่อน ถึงจะใช้งานระบบได้นะจ๊ะ</p>
+    </div>
+    <div class="form-group input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+      </div>
+      <input
+        formControlName="fristName"
+        class="form-control"
+        placeholder="Frist name"
+        type="text"
+      />
+    </div>
+   
+    <div class="form-group input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+      </div>
+      <input
+        formControlName="lastName"
+        class="form-control"
+        placeholder="Last name"
+        type="text"
+      />
+    </div>
+
+    <div class="form-group input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+      </div>
+      <input
+        formControlName="phone"
+        class="form-control"
+        placeholder="Phone number"
+        type="text"
+      />
+    </div>
+
+    <div class="form-group input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+      </div>
+      <input
+        formControlName="age"
+        class="form-control"
+        placeholder="Age"
+        type="text"
+      />
+    </div>
+ 
+    <div class="form-group input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+      </div>
+      <select class="form-control" formControlName="roleId">
+        <option selected="" value="">กรุณาเลือก Role</option>
+        <option *ngFor="let item of roleList" value="{{ item.id }}">
+          {{ item.roleName }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+      </div>
+      <input
+        formControlName="userName"
+        class="form-control"
+        placeholder="username"
+        type="text"
+      />
+    </div>
+   
+    <div class="form-group input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+      </div>
+      <input
+        formControlName="password"
+        class="form-control"
+        placeholder="Create password"
+        type="password"
+      />
+    </div>
+
+    <div class="form-group input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+      </div>
+      <input
+        formControlName="confirmPassword"
+        class="form-control"
+        placeholder="Repeat password"
+        type="password"
+      />
+    </div>
+
+    <div>
+      <p *ngIf="isPassword">กรุณากรอก Password ให้ตรงกันกับด้านบ้านด้วยค่ะ</p>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-block">
+        Save Account
+      </button>
+    </div>
+
+  </div>
+</form> -->
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <section class="h-100">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card card-registration my-4">
+            <div class="row g-0">
+              <div class="col-xl-6 d-none d-xl-block">
+                <img
+                  src="https://preview.redd.it/6tzbioa0ohb61.png?width=1080&crop=smart&auto=webp&s=51a6d788128b0dbe402a1356ccd4760246f879cf"
+                  alt="Sample photo"
+                  class="img-fluid"
+                  style="
+                    border-top-left-radius: 0.25rem;
+                    border-bottom-left-radius: 0.25rem;
+                    max-width: 100%; /* ให้รูปไม่เกินขอบ container */
+                    max-height: 1100px; /* ปรับความสูงของรูปตามต้องการ */
+                  "
+                />
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+                  <h3 class="mb-5 text-uppercase">Register</h3>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div data-mdb-input-init class="form-outline">
+                        <input
+                          type="text"
+                          id="form3Example1m"
+                          class="form-control form-control-lg"
+                          formControlName="fristName"
+                          placeholder="Frist name"
+                        />
+                        <label class="form-label" for="form3Example1m"
+                          >First name</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div data-mdb-input-init class="form-outline">
+                        <input
+                          type="text"
+                          id="form3Example1n"
+                          class="form-control form-control-lg"
+                          formControlName="lastName"
+                          placeholder="Last name"
+                        />
+                        <label class="form-label" for="form3Example1n"
+                          >Last name</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="mb-4">
+                      <div data-mdb-input-init class="form-outline">
+                        <input
+                          type="text"
+                          id="form3Example1m1"
+                          class="form-control form-control-lg"
+                          formControlName="phone"
+                          placeholder="Phone number"
+                        />
+                        <label class="form-label" for="form3Example1m1"
+                          >Phone number</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input
+                      type="text"
+                      id="form3Example8"
+                      class="form-control form-control-lg"
+                      formControlName="age"
+                      placeholder="Age"
+                    />
+                    <label class="form-label" for="form3Example8">Age</label>
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input
+                      type="text"
+                      id="form3Example9"
+                      class="form-control form-control-lg"
+                      formControlName="userName"
+                      placeholder="Username"
+                    />
+                    <label class="form-label" for="form3Example9"
+                      >Username</label
+                    >
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input
+                      type="text"
+                      id="form3Example90"
+                      class="form-control form-control-lg"
+                      formControlName="password"
+                      placeholder="Create password"
+                    />
+                    <label class="form-label" for="form3Example90"
+                      >Create password</label
+                    >
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                    <input
+                      type="text"
+                      id="form3Example99"
+                      class="form-control form-control-lg"
+                      formControlName="confirmPassword"
+                      placeholder="Repeat password"
+                    />
+                    <label class="form-label" for="form3Example99"
+                      >Repeat password</label
+                    >
+                  </div>
+
+                  <div class="d-flex justify-content-end pt-3">
+                    <button type="submit" class="btn btn-warning btn-lg ms-2">
+                      Save Account
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>

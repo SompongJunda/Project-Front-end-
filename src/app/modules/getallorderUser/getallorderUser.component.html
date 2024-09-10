@@ -1,0 +1,455 @@
+<div *ngFor="let order of orderList; let i = index">
+  <div
+    class="bg-dark shadow-dark border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center"
+  >
+    <h4 class="text-white text-capitalize ps-3">คำสั่งซื้อ</h4>
+    <div class="ms-auto d-flex gap-2">
+      <!-- <button class="btn btn-warning" (click)="onUpdateUser(order.ordersId)">แก้ไข</button> -->
+      <button
+        class="btn btn-danger me-3"
+        (click)="onDeleteOrder(order.ordersId)"
+      >
+        ลบ
+      </button>
+    </div>
+  </div>
+  <div class="alert alert-light">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="text-uppercase text-secondary text-x font-weight-bolder">
+            ไอดี ออเดอร์
+          </th>
+          <th class="text-uppercase text-secondary text-x font-weight-bolder">
+            ไอดี ผู้ใช้
+          </th>
+          <th class="text-uppercase text-secondary text-x font-weight-bolder">
+            ชื่อ-นามสกุล
+          </th>
+          <th class="text-uppercase text-secondary text-x font-weight-bolder">
+            เบอร์ติดต่อ
+          </th>
+          <th class="text-uppercase text-secondary text-x font-weight-bolder">
+            สถานะการชำระเงิน
+          </th>
+          <th class="text-uppercase text-secondary text-x font-weight-bolder">
+            วันที่สั่งสินค้า
+          </th>
+          <th class="text-uppercase text-secondary text-x font-weight-bolder">
+            ที่อยู่
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="align-middle text-center">
+            <p class="text-x font-weight-bold mb-0">{{ order.ordersId }}</p>
+          </td>
+          <td class="align-middle text-center">
+            <p class="text-x font-weight-bold mb-0">{{ order.userId }}</p>
+          </td>
+          <td *ngIf="order.userData" class="align-middle text-center">
+            <p class="text-x font-weight-bold mb-0">
+              {{ order.userData.fristName }} {{ order.userData.lastName }}
+            </p>
+          </td>
+          <td class="align-middle text-center">
+            <span class="text-secondary text-x font-weight-bold">{{
+              order.phone
+            }}</span>
+          </td>
+          <td
+            class="align-middle text-center"
+            (click)="setSelectedProduct(order)"
+          >
+            <span
+              *ngIf="order.status == '1'"
+              class="badge badge-x bg-gradient-warning"
+              >กำลังตรวจสอบ</span
+            >
+            <span
+              *ngIf="order.status == '2'"
+              class="badge badge-x bg-gradient-success"
+              >ชำระเงินเเล้ว รอรับสินค้า</span
+            >
+            <span
+              *ngIf="order.status == '3'"
+              class="badge badge-x bg-gradient-danger"
+              >ยังไม่ชำระเงิน</span
+            >
+            <span
+              *ngIf="order.status == '4'"
+              class="badge badge-sm bg-gradient-secondary"
+              >ชำระเงินไม่ครบตามจำนวน</span
+            >
+          </td>
+          <td class="align-middle text-center">
+            <span class="text-secondary text-x font-weight-bold">{{
+              order.createDate | date : "medium"
+            }}</span>
+          </td>
+          <td class="align-middle text-center">
+            <span class="text-secondary text-x font-weight-bold">{{
+              order.address
+            }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a
+      (click)="setSelectedProduct(order)"
+      class="pencil-icon"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      <i class="bi bi-pencil"></i>
+    </a>
+  </div>
+
+  <h3>สินค้า</h3>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="text-uppercase text-secondary text-x font-weight-bolder">
+          รูปสินค้า
+        </th>
+        <th class="text-uppercase text-secondary text-x font-weight-bolder">
+          รายละเอียดสินค้า
+        </th>
+        <th
+          class="text-uppercase text-secondary text-x font-weight-bolder"
+          style="width: 10px"
+        >
+          ราคา
+        </th>
+        <th
+          class="text-uppercase text-secondary text-x font-weight-bolder"
+          style="width: 10px"
+        >
+          จำนวน
+        </th>
+        <th
+          class="text-uppercase text-secondary text-x font-weight-bolder"
+          style="width: 10px"
+        >
+          ราคารวม
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of order.productList; let i = index">
+        <td>
+          <div class="d-flex px-2 py-1">
+            <div>
+              <img
+                *ngIf="product.imgList.length > 0"
+                [src]="product.imgList[0]"
+                class="avatar avatar-sm me-3 border-radius-lg"
+                alt="Product Image"
+              />
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="d-flex flex-column justify-content-center">
+            <h6 class="mb-0 text-sm">{{ product.productName }}</h6>
+            <p
+              style="
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 80ch;
+              "
+            >
+              {{ product.productDesc }}
+            </p>
+          </div>
+        </td>
+
+        <td class="align-middle text-center text-sm">
+          <span class="text-secondary text-x font-weight-bold">{{
+            product.price | currency : " ฿ "
+          }}</span>
+        </td>
+        <td class="align-middle text-center">
+          <span class="text-secondary text-xs font-weight-bold"
+            >{{ getQuantity(order, product.productId) }} ชิ้น</span
+          >
+        </td>
+        <td class="align-middle text-center text-sm">
+          <span class="text-secondary text-danger font-weight-bold">{{
+            product.price * getQuantity(order, product.productId)
+              | currency : " ฿ "
+          }}</span>
+        </td>
+      </tr>
+      <td colspan="5" class="text-end mt-3">
+        <div class="order-total mt-3">
+          <h6>
+            ยอดรวมคำสั่งซื้อ :
+            {{ calculateOrderTotal(order) | currency : " ฿ " }} บาท
+          </h6>
+        </div>
+      </td>
+    </tbody>
+  </table>
+  <div
+    (click)="setSelectedProducts(order, calculateOrderTotal(order))"
+    class="form-group row text-end"
+    data-bs-toggle="modal"
+    data-bs-target="#FormModal"
+  >
+    <div class="col-12">
+      <button type="submit" class="btn btn-warning btn-lg">ชำระเงิน</button>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="col-12 text-end">
+      <div
+        class="d-flex justify-content-end"
+        *ngIf="order.paymentImage && order.paymentImage.length > 0"
+      >
+        <div *ngFor="let payment of order.paymentImage; let i = index">
+          <div
+            class="form-group"
+            data-bs-toggle="modal"
+            data-bs-target="#FormModal25"
+            (click)="payments(payment)"
+          >
+            <img
+              *ngIf="payment.imgList.length > 0"
+              [src]="payment.imgList[0]"
+              class="avatar avatar-xxl me-3 border-radius-lg"
+              alt="Payment Image"
+              width="300"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade pt-6"
+  id="FormModal25"
+  tabindex="-1"
+  aria-labelledby="FormModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <!--   
+      <div class="modal-header bg-dark shadow-dark">
+        <h4 class="modal-title text-white" id="exampleModalLabel">
+          รูปสลิปโอนเงิน
+        </h4>
+        <button
+          type="button"
+          class="btn-close red-btn"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div> -->
+
+    <div class="modal-body">
+      <form>
+        <div class="d-flex justify-content-center">
+          <div *ngIf="selectedpayments && selectedpayments.imgList.length > 0">
+            <img
+              [src]="selectedpayments.imgList[0]"
+              class="product-img border-radius-lg mx-auto d-block"
+              alt="Payment Image"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngFor="let order of orderList; let i = index"
+  class="modal fade pt-6"
+  id="FormModal"
+  tabindex="-1"
+  aria-labelledby="FormModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered custom-modal-width">
+    <div class="modal-content">
+      <div class="modal-header bg-dark shadow-dark">
+        <h4 class="modal-title text-white" id="exampleModalLabel">ชำระเงิน</h4>
+        <button
+          type="button"
+          class="btn-close red-btn"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="updateForm" (ngSubmit)="onButton(selectedProduct)">
+          <div
+            class="row justify-content-center align-items-center text-center pt-6"
+          >
+            <img class="w-64 h-64 rounded" [src]="linkPrompray" />
+            <br />
+            <div class="form-group row">
+              <label for="age" class="col-form-label text-center"
+                >ส่งรูปสลิปโอนเงิน</label
+              >
+              <div class="col-12">
+                <!-- แสดงรูปภาพที่เพิ่มเข้ามา -->
+                <div *ngFor="let item of ImageList">
+                  <img
+                    [src]="item.value"
+                    class="d-block img-thumbnail me-3 circular-image"
+                    alt="Profile Image"
+                  />
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-close"
+                    aria-label="Close"
+                    (click)="onDeleteFileChanged(item.key)"
+                  >
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                  <br />
+                </div>
+                <div class="file btn btn-lg btn-white">
+                  อัพโหลดรูปภาพ
+
+                  <input
+                    formControlName="files"
+                    #fileInput
+                    (change)="onFileChanged($event)"
+                    placeholder="รูปสินค้า"
+                    class="form-control mt-2"
+                    type="file"
+                    multiple
+                    required
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    updateForm.controls['files'].invalid &&
+                    (updateForm.controls['files'].dirty ||
+                      updateForm.controls['files'].touched ||
+                      isSubmit)
+                  "
+                  class="alert alert-danger mt-2"
+                >
+                  *** กรุณาใส่รูปภาพ
+                </div>
+              </div>
+            </div>
+            <!-- <div *ngIf="order.paymentImage && order.paymentImage.length > 0">
+              <div
+                *ngFor="let payment of order.paymentImage; let i = index"
+                class="image-wrapper"
+              >
+                <img
+                  *ngIf="payment.imgList.length > 0"
+                  [src]="payment.imgList[0]"
+                  [srcset]="
+                    payment.imgList[0] + ' 1x, ' + payment.imgList[1] + ' 2x'
+                  "
+                  class="product-img"
+                  alt="Payment Image"
+                />
+              </div>
+            </div> -->
+
+            <div class="form-group row text-end">
+              <div class="col-12">
+                <button class="btn btn-warning btn-lg">บันทึกข้อมูล</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngFor="let order of orderList; let i = index"
+  class="modal fade pt-6"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered custom-modal-width">
+    <div class="modal-content">
+      <div class="modal-header bg-dark shadow-dark">
+        <h4 class="modal-title text-white" id="exampleModalLabel">
+          แก้ไขข้อมูล
+        </h4>
+        <button
+          type="button"
+          class="btn-close red-btn"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-15">
+            <form [formGroup]="updateForms" (ngSubmit)="onSubmit()">
+              <div class="form-group row">
+                <label for="username" class="col-4 col-form-label">ชื่อ</label>
+                <div class="col-12">
+                  <input
+                    placeholder="{{ userDetail.fristName }} {{
+                      userDetail.lastName
+                    }}"
+                    class="form-control here"
+                    required="required"
+                    type="text"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="name" class="col-4 col-form-label">เบอร์</label>
+                <div *ngIf="order.userData" class="col-12">
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="phonenumber_invoice"
+                    placeholder="{{ order.phone }}"
+                    formControlName="phone"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="lastname" class="col-4 col-form-label"
+                  >ที่อยู๋</label
+                >
+                <div class="col-12">
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    rows="3"
+                    placeholder="{{ order.address }}"
+                    formControlName="address"
+                  ></textarea>
+                </div>
+              </div>
+
+              <br />
+              <div class="form-group row text-end">
+                <div class="col-12">
+                  <button type="submit" class="btn btn-warning btn-lg">
+                    บันทึกข้อมูล
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

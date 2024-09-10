@@ -1,0 +1,21 @@
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+
+.btn-control {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ced4da;
+  background-color: #ffffff;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.btn-control:hover {
+  background-color: #e9ecef;
+}

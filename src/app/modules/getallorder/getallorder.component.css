@@ -1,0 +1,27 @@
+.red-btn {
+  background-color: red;
+  margin-left: -20px;
+}
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 10px; /* กำหนดขอบมุมโค้ง */
+  object-fit: cover; /* เพื่อให้รูปภาพครอบคลุมพื้นที่ขององค์ประกอบ */
+}
+
+.avatar {
+  border-radius: 10px; /* กำหนดขอบมุมโค้ง */
+}
+
+.text-end {
+  text-align: right;
+}
+.justify-content-end {
+  justify-content: flex-end;
+}

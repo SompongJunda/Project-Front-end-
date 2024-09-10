@@ -1,0 +1,86 @@
+<div
+  id="carouselExampleIndicators"
+  class="carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        src="https://media-cdn.bnn.in.th/405110/AcerWeeklyDeal-2000x720-170624_230624-homepage_desktop_banner_medium.jpg"
+        class="d-block w-100"
+        alt="Acer Weekly Deal"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="https://media-cdn.bnn.in.th/405041/AsusBrandFair-2000x720-160624-300624-homepage_desktop_banner_medium.jpg"
+        class="d-block w-100"
+        alt="Asus Brand Fair"
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="https://media-cdn.bnn.in.th/370813/ClaimAMDNotebook-1752x640-010224_310324-category_banner_medium.jpg"
+        class="d-block w-100"
+        alt="Asus Brand Fair"
+      />
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleIndicators"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleIndicators"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<h2 class="pt-4 product-name">สินค้าทั้งหมด</h2>
+<div class="pt-4 product-container">
+  <div *ngFor="let product of productList" class="product-card">
+    <a
+      class="product-link"
+      [routerLink]="['/login']"
+      (click)="addToCart(product.productId, product.quantityToAdd)"
+    >
+      <div class="">
+        <div class="card">
+          <div class="image-container">
+            <span class="product-discount-label">HOT</span>
+            <img
+              *ngIf="product.imgList.length > 0"
+              [src]="product.imgList[0]"
+              class="product-image thumbnail-image"
+            />
+          </div>
+        </div>
+        <div class="product-description">
+          <h6 class="product-name">{{ product.productName }}</h6>
+          <p class="product-author">{{ product.productDesc }}</p>
+        </div>
+      </div>
+    </a>
+
+    <div class="product-details">
+      <div class="product-price">
+        <span class="text-secondary text-xl font-weight-bold">
+          {{ product.price | currency : "฿ " }}
+        </span>
+        <span class="text-secondary text-x font-weight-bold">{{
+          product.quantity
+        }}</span>
+      </div>
+    </div>
+  </div>
+</div>

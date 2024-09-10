@@ -1,0 +1,65 @@
+.alert {
+  position: relative;
+}
+
+.pencil-icon {
+  position: absolute;
+  top: 50%;
+  right: 20px; /* Adjust the right position as needed */
+  transform: translateY(-50%);
+  font-size: 1.5rem; /* Adjust the size as needed */
+  color: #403e3e; /* Adjust the color as needed */
+  cursor: pointer;
+}
+.red-btn {
+  background-color: red;
+  margin-left: -20px;
+}
+
+.custom-modal-width {
+  max-width: 50%; /* สามารถปรับได้ตามต้องการ */
+  margin: 1.75rem auto; /* กำหนดระยะห่างจากขอบบนและล่าง */
+}
+img {
+  max-width: 50%;
+  max-height: 80%;
+  display: flex;
+
+  height: 40vh;
+  margin: 0;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-dialog-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  max-width: 100%;
+  width: auto; /* Ensures the content takes its natural width */
+}
+
+.product-img {
+  max-width: 100%;
+  height: auto; /* Ensures the image maintains its aspect ratio */
+}
+
+.text-end {
+  text-align: right;
+}
+.justify-content-end {
+  justify-content: flex-end;
+}
+
+.avatar {
+  border-radius: 10px; /* กำหนดขอบมุมโค้ง */
+  max-width: 90%;
+  height: auto;
+}

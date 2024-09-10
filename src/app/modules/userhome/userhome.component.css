@@ -1,0 +1,227 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eb1313;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.image-container {
+  position: relative;
+}
+.thumbnail-image {
+  border-radius: 5px !important;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 343px;
+  text-align: center;
+}
+
+.product-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.label h2 {
+  margin: 0;
+}
+
+.product-image {
+  width: 100%;
+  height: 300px;
+  margin-top: -10px;
+}
+
+.product-description {
+  padding: 15px;
+}
+
+.product-name {
+  color: #3a3939;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+  font-family: "Prompt", sans-serif;
+}
+
+.product-author {
+  color: #2c1a3a;
+  margin: 10px 0 0;
+}
+
+.product-details {
+  padding: 10px;
+
+  background-color: #fafafa;
+}
+
+.product-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-price p {
+  margin: 0;
+  font-size: 2.5em;
+}
+
+.view-count {
+  font-size: 0.9em;
+  color: #fffdfd;
+}
+
+.product-action {
+  margin-top: 10px;
+}
+
+.add-to-cart-button {
+  background-color: #0441c3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+  /* เพิ่มระยะห่างระหว่างปุ่ม */
+}
+
+.add-to-cart-button:last-child {
+  margin-right: 0;
+  /* ลบระยะห่างสำหรับปุ่มสุดท้าย */
+}
+
+.add-to-cart-button:hover {
+  background-color: #08a2d1;
+}
+
+/* @keyframes fadeInText {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes flicker4 {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    opacity: 1;
+  }
+
+  20%,
+  24%,
+  55% {
+    opacity: 0;
+  }
+}
+
+@keyframes hueRotate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes colorBlink {
+  0% {
+    color: #c5046e;
+  }
+
+  20% {
+    color: #e91e63;
+  }
+
+  40% {
+    color: #ff5722;
+  }
+
+  60% {
+    color: #ffeb3b;
+  }
+
+  80% {
+    color: #4caf50;
+  }
+
+  100% {
+    color: #2196f3;
+  }
+} */
+
+.product-discount-label {
+  color: #fff;
+  background: #f82018;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 25px;
+  padding: 0 20px;
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+
+.product-link,
+.card {
+  cursor: pointer;
+}
+
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
+
+.card-registration .select-arrow {
+  top: 13px;
+}
+
+.resized-image {
+  width: 1430px;
+  height: auto; /* หรือกำหนดความสูงที่ต้องการ */
+}
+
+.carousel-item img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.flashsale-img {
+  max-width: 200px;
+  height: auto;
+}
